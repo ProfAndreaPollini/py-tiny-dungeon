@@ -4,6 +4,8 @@ from dataclasses import dataclass
 import pygame as pg
 from typing import TYPE_CHECKING, Optional
 
+from random import choice
+
 if TYPE_CHECKING:
   from tiny_dungeon.game import Game
 
@@ -16,7 +18,7 @@ class Cell:
 
 class Map:
   def __init__(self, game: "Game", size=(10, 10)):
-    self.cells = [Cell(sprite="floor", walkable=True)
+    self.cells = [choice((Cell(sprite="floor", walkable=True), Cell(sprite="wall", walkable=False)))
                   for _ in range(size[0]*size[1])]
     self.game = game
     self.size = size

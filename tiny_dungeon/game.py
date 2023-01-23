@@ -36,7 +36,8 @@ class Game:
     def update(self) -> None:
         while len(self.commands) > 0:
             cmd = self.commands.popleft()
-            cmd.execute()
+            if cmd.validate(self):
+              cmd.execute()
 
     def draw(self) -> None:
         self.screen.blit(self.sprites.surface, (0, 0))
